@@ -1,0 +1,112 @@
+<h2>Everything-Prompt 项目整体架构</h2>
+<p class="subtitle">三阶段开发计划概览</p>
+
+<div class="section">
+<h3>技术架构图</h3>
+<div class="mockup">
+  <div class="mockup-header">系统架构</div>
+  <div class="mockup-body">
+    <div style="display: flex; flex-direction: column; gap: 12px; font-family: monospace; font-size: 13px;">
+      <div style="display: flex; justify-content: center; gap: 20px;">
+        <div style="background: #667eea; color: white; padding: 8px 16px; border-radius: 6px;">Vue3 前端</div>
+        <div style="color: #666;">→</div>
+        <div style="background: #f56565; color: white; padding: 8px 16px; border-radius: 6px;">Nginx</div>
+        <div style="color: #666;">→</div>
+        <div style="background: #48bb78; color: white; padding: 8px 16px; border-radius: 6px;">SpringBoot</div>
+        <div style="color: #666;">→</div>
+        <div style="background: #ed8936; color: white; padding: 8px 16px; border-radius: 6px;">MySQL + Redis</div>
+      </div>
+      <div style="display: flex; justify-content: center; gap: 40px; margin-top: 8px;">
+        <div style="text-align: center;">
+          <div style="color: #888; font-size: 11px;">Caffeine 二级缓存</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="color: #888; font-size: 11px;">JWT 无状态认证</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="color: #888; font-size: 11px;">@Async 异步 AI 调用</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<h3>三阶段开发计划</h3>
+<div class="cards">
+  <div class="card" data-choice="phase1" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <h3>Phase 1 - MVP 基础版</h3>
+      <p>公共模块 + 账号体系 + 核心免费功能</p>
+      <ul style="text-align: left; font-size: 13px; color: #666;">
+        <li>首页 + 分类广场</li>
+        <li>注册/登录/JWT</li>
+        <li>免费模板库</li>
+        <li>基础提示词生成器</li>
+      </ul>
+      <div style="background: #e8f5e9; color: #2e7d32; padding: 4px 8px; border-radius: 4px; font-size: 12px; margin-top: 8px;">预计 2-3 周</div>
+    </div>
+  </div>
+  <div class="card" data-choice="phase2" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <h3>Phase 2 - 会员完整版</h3>
+      <p>付费功能 + 安全防护（变现核心）</p>
+      <ul style="text-align: left; font-size: 13px; color: #666;">
+        <li>VIP 权限体系</li>
+        <li>深度 AI 优化</li>
+        <li>私有词库</li>
+        <li>Redis 限流防刷</li>
+      </ul>
+      <div style="background: #fff3e0; color: #e65100; padding: 4px 8px; border-radius: 4px; font-size: 12px; margin-top: 8px;">预计 2-3 周</div>
+    </div>
+  </div>
+  <div class="card" data-choice="phase3" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <h3>Phase 3 - 管理后台</h3>
+      <p>后台完整功能（运营支撑）</p>
+      <ul style="text-align: left; font-size: 13px; color: #666;">
+        <li>模板/分类管理</li>
+        <li>用户管理</li>
+        <li>VIP 授权</li>
+        <li>数据统计</li>
+      </ul>
+      <div style="background: #e3f2fd; color: #1565c0; padding: 4px 8px; border-radius: 4px; font-size: 12px; margin-top: 8px;">预计 1-2 周</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<h3>核心功能模块</h3>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: left;">
+  <div style="background: #f8f9fa; padding: 12px; border-radius: 8px;">
+    <div style="font-weight: bold; color: #667eea; margin-bottom: 4px;">用户端</div>
+    <div style="font-size: 12px; color: #666;">• 首页/分类广场</div>
+    <div style="font-size: 12px; color: #666;">• 模板浏览/搜索</div>
+    <div style="font-size: 12px; color: #666;">• Prompt 生成器</div>
+    <div style="font-size: 12px; color: #666;">• AI 优化功能</div>
+    <div style="font-size: 12px; color: #666;">• 个人词库</div>
+  </div>
+  <div style="background: #f8f9fa; padding: 12px; border-radius: 8px;">
+    <div style="font-weight: bold; color: #f56565; margin-bottom: 4px;">安全层</div>
+    <div style="font-size: 12px; color: #666;">• JWT 无状态认证</div>
+    <div style="font-size: 12px; color: #666;">• Redis 限流</div>
+    <div style="font-size: 12px; color: #666;">• 防重复提交</div>
+    <div style="font-size: 12px; color: #666;">• 权限拦截</div>
+    <div style="font-size: 12px; color: #666;">• 超时熔断</div>
+  </div>
+  <div style="background: #f8f9fa; padding: 12px; border-radius: 8px;">
+    <div style="font-weight: bold; color: #48bb78; margin-bottom: 4px;">管理端</div>
+    <div style="font-size: 12px; color: #666;">• 模板管理</div>
+    <div style="font-size: 12px; color: #666;">• 分类管理</div>
+    <div style="font-size: 12px; color: #666;">• 用户管理</div>
+    <div style="font-size: 12px; color: #666;">• 权限配置</div>
+    <div style="font-size: 12px; color: #666;">• 数据统计</div>
+  </div>
+</div>
+</div>
+
+<p class="subtitle" style="margin-top: 24px;">
+  请选择一个阶段查看详细设计，或继续了解其他问题
+</p>
