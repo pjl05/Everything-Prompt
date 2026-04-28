@@ -20,6 +20,7 @@ public class AuthService {
 
     private final SysUserMapper userMapper;
     private final StringRedisTemplate redisTemplate;
+    private final JwtUtil jwtUtil;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public Map<String, Object> register(String username, String password, String email) {
@@ -61,7 +62,7 @@ public class AuthService {
     }
 
     public SysUser getCurrentUser(String token) {
-        Long userId = JwtUtil.getUserIdFromToken(token);
+        Long userId = jwtUtil.getUserIdFromToken(token);
         return userMapper.selectById(userId);
     }
 
@@ -71,7 +72,7 @@ public class AuthService {
         claims.put("username", user.getUsername());
         claims.put("role", user.getRole());
 
-        String token = JwtUtil.generateToken(claims);
+        String token = jwtUtil.generateToken(claims);
 
         Map<String, Object> result = new HashMap<>();
         result.put("token", token);

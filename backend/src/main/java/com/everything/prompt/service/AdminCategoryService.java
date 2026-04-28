@@ -1,6 +1,7 @@
 package com.everything.prompt.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.everything.prompt.entity.TemplateCategory;
 import com.everything.prompt.mapper.TemplateCategoryMapper;
 import lombok.RequiredArgsConstructor;
@@ -41,10 +42,9 @@ public class AdminCategoryService {
 
     @CacheEvict(value = "categories", allEntries = true)
     public void updateSortOrder(Long id, Integer sortOrder) {
-        categoryMapper.update(null,
-            new LambdaQueryWrapper<TemplateCategory>()
-                .eq(TemplateCategory::getId, id)
-                .set(TemplateCategory::getSortOrder, sortOrder)
-        );
+        UpdateWrapper<TemplateCategory> wrapper = new UpdateWrapper<>();
+        wrapper.eq("id", id);
+        wrapper.set("sort_order", sortOrder);
+        categoryMapper.update(null, wrapper);
     }
 }

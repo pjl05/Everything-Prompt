@@ -1,6 +1,7 @@
 package com.everything.prompt.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.everything.prompt.entity.PromptTemplate;
 import com.everything.prompt.exception.BusinessException;
 import com.everything.prompt.mapper.PromptTemplateMapper;
@@ -52,11 +53,10 @@ public class AdminTemplateService {
 
     @CacheEvict(value = "templates", allEntries = true)
     public void updateStatus(Long id, Integer status) {
-        templateMapper.update(null,
-            new LambdaQueryWrapper<PromptTemplate>()
-                .eq(PromptTemplate::getId, id)
-                .set(PromptTemplate::getStatus, status)
-        );
+        UpdateWrapper<PromptTemplate> wrapper = new UpdateWrapper<>();
+        wrapper.eq("id", id);
+        wrapper.set("status", status);
+        templateMapper.update(null, wrapper);
     }
 
     @CacheEvict(value = "templates", allEntries = true)

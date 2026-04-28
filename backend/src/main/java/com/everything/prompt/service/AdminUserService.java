@@ -1,5 +1,6 @@
 package com.everything.prompt.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.everything.prompt.entity.SysUser;
 import com.everything.prompt.exception.BusinessException;

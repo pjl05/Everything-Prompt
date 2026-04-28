@@ -18,17 +18,26 @@ import java.util.Arrays;
 public class RoleCheckAspect {
 
     @Before("@annotation(requireRole)")
-    public void checkRole(JoinPoint point, RequireRole requireRole) {
+    public void checkMethodRole(JoinPoint point, RequireRole requireRole) {
+        checkRole(requireRole.value());
+    }
+
+    @Before("@within(requireRole)")
+    public void checkClassRole(JoinPoint point, RequireRole requireRole) {
+        checkRole(requireRole.value());
+    }
+
+    private void checkRole(String[] allowedRoles) {
         SysUser currentUser = SecurityUtil.getCurrentUser();
         if (currentUser == null) {
             throw new BusinessException(401, "请先登录");
         }
 
         String userRole = currentUser.getRole();
-        boolean hasRole = Arrays.asList(requireRole.value()).contains(userRole);
+        boolean hasRole = Arrays.asList(allowedRoles).contains(userRole);
 
         if (!hasRole && !"ADMIN".equals(userRole)) {
-            log.warn("用户 {} 权限不足，角色: {}，需要: {}", currentUser.getUsername(), userRole, Arrays.toString(requireRole.value()));
+            log.warn("用户 {} 权限不足，角色: {}，需要: {}", currentUser.getUsername(), userRole, Arrays.toString(allowedRoles));
             throw new BusinessException(403, "权限不足");
         }
     }

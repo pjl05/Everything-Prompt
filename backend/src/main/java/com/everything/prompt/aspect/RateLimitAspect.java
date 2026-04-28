@@ -49,6 +49,7 @@ public class RateLimitAspect {
     }
 
     private HttpServletRequest getRequest() {
-        return ((HttpServletRequest) org.springframework.web.context.request.RequestContextHolder.getRequestAttributes()).resolveRequestAttribute("javax.servlet.http.HttpServletRequest");
+        return (HttpServletRequest) org.springframework.web.context.request.RequestContextHolder.getRequestAttributes()
+                .getAttribute("jakarta.servlet.http.HttpServletRequest", org.springframework.web.context.request.RequestAttributes.SCOPE_REQUEST);
     }
 }
