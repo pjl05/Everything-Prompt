@@ -22,7 +22,28 @@
         <h1>{{ template.title }}</h1>
         <p class="description">{{ template.description }}</p>
 
+        <!-- 效果示例 -->
+        <div class="example-section" v-if="template.exampleResult">
+          <h3><span class="icon">✨</span> 效果示例</h3>
+          <div class="example-content">
+            <pre>{{ template.exampleResult }}</pre>
+          </div>
+        </div>
+
+        <!-- 适用场景 -->
+        <div class="info-section" v-if="template.scenario">
+          <h3><span class="icon">🎯</span> 适用场景</h3>
+          <p class="scenario-text">{{ template.scenario }}</p>
+        </div>
+
+        <!-- 使用说明 -->
+        <div class="info-section" v-if="template.usageGuide">
+          <h3><span class="icon">📖</span> 使用说明</h3>
+          <p class="guide-text">{{ template.usageGuide }}</p>
+        </div>
+
         <div class="template-content">
+          <h3><span class="icon">📝</span> 提示词内容</h3>
           <pre>{{ template.content }}</pre>
         </div>
 
@@ -109,6 +130,53 @@ onMounted(async () => {
 .detail-actions {
   display: flex;
   gap: 16px;
+}
+.example-section,
+.info-section {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.05));
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-primary);
+}
+.example-section h3,
+.info-section h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.example-section .icon,
+.info-section .icon {
+  font-size: 18px;
+}
+.example-content {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+}
+.example-content pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+.scenario-text,
+.guide-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 14px;
+}
+.template-content h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .navbar {
   position: fixed;

@@ -21,7 +21,22 @@ public class PromptTemplate {
     private Double rating;
     private Integer status;
     private Long createUserId;
-    
+
+    /**
+     * 效果示例 - 展示使用此提示词能得到什么结果
+     */
+    private String exampleResult;
+
+    /**
+     * 适用场景
+     */
+    private String scenario;
+
+    /**
+     * 使用说明
+     */
+    private String usageGuide;
+
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
     
