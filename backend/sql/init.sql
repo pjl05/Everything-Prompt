@@ -143,3 +143,33 @@ CREATE TABLE IF NOT EXISTS chat_message (
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_session_id (session_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 提示词分享表
+CREATE TABLE IF NOT EXISTS prompt_share (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL COMMENT '分享用户ID',
+    template_id BIGINT COMMENT '关联模板ID',
+    prompt_title VARCHAR(100) COMMENT '提示词标题',
+    prompt_content TEXT COMMENT '分享的提示词内容',
+    ai_result TEXT COMMENT 'AI生成结果示例',
+    description TEXT COMMENT '分享描述',
+    usage_count INT DEFAULT 0 COMMENT '使用次数',
+    like_count INT DEFAULT 0 COMMENT '点赞数',
+    status TINYINT DEFAULT 1 COMMENT '状态：0隐藏 1展示',
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_user_id (user_id),
+    INDEX idx_template_id (template_id),
+    INDEX idx_create_time (create_time)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 分享点赞表
+CREATE TABLE IF NOT EXISTS share_like (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    share_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uk_share_user (share_id, user_id),
+    INDEX idx_share_id (share_id),
+    INDEX idx_user_id (user_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -13,6 +13,7 @@ const routes = [
     { path: '/batch', component: () => import('../views/batch/index.vue') },
     { path: '/ai/chat', component: () => import('../views/ai/chat.vue') },
     { path: '/ai/chat/:sessionId', component: () => import('../views/ai/chat.vue') },
+    { path: '/share', component: () => import('../views/share/index.vue') },
     { path: '/admin', component: () => import('../layout/admin.vue'), meta: { requiresAdmin: true },
       children: [
         { path: '', component: () => import('../views/admin/dashboard.vue') },
