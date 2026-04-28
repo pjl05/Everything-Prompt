@@ -11,6 +11,8 @@ const routes = [
     { path: '/word/list', component: () => import('../views/word/list.vue') },
     { path: '/favorite/list', component: () => import('../views/favorite/list.vue') },
     { path: '/batch', component: () => import('../views/batch/index.vue') },
+    { path: '/ai/chat', component: () => import('../views/ai/chat.vue') },
+    { path: '/ai/chat/:sessionId', component: () => import('../views/ai/chat.vue') },
     { path: '/admin', component: () => import('../layout/admin.vue'), meta: { requiresAdmin: true },
       children: [
         { path: '', component: () => import('../views/admin/dashboard.vue') },
