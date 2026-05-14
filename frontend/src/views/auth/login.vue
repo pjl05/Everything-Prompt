@@ -22,6 +22,13 @@
         还没有账号?
         <router-link to="/register" class="text-gradient">立即注册</router-link>
       </div>
+
+      <div class="nav-links" style="margin-top: 24px; justify-content: center;">
+        <a href="/" class="nav-link">首页</a>
+        <a href="/templates" class="nav-link">模板广场</a>
+        <a href="/ai/chat" class="nav-link">AI对话</a>
+        <a href="/share" class="nav-link">案例墙</a>
+      </div>
     </div>
   </div>
 </template>

@@ -9,6 +9,8 @@
         <div class="nav-links">
           <a href="/" class="nav-link">首页</a>
           <a href="/templates" class="nav-link">模板广场</a>
+          <a href="/ai/chat" class="nav-link">AI对话</a>
+          <a href="/share" class="nav-link">案例墙</a>
           <a href="/vip/templates" class="nav-link">高级模板</a>
           <a href="/word/list" class="nav-link active">私有词库</a>
         </div>
